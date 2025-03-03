@@ -92,7 +92,7 @@ abstract class Abstract_RPC_Client extends Abstract_JSON_RPC_2
      * @param mixed $in
      * @return string|null
      */
-    protected function getCleanHexadecimal(mixed $in): ?string
+    public function getCleanHexadecimal(mixed $in): ?string
     {
         if (!is_string($in) || !preg_match('/(0x)?[a-f0-9]+/i', $in)) {
             return null;
@@ -113,7 +113,7 @@ abstract class Abstract_RPC_Client extends Abstract_JSON_RPC_2
      * @param int|string $num
      * @return string
      */
-    private function int2hex(int|string $num): string
+    public function int2hex(int|string $num): string
     {
         $hex = bin2hex(BigEndian::GMP_Pack($num));
         if (strlen($hex) % 2 !== 0) {
