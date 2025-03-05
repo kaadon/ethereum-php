@@ -43,7 +43,9 @@ abstract class AbstractNetworkConfig extends \FurqanSiddiqui\BIP32\Networks\Abst
             $bip32_exportPrivateKeyPrefix,
             $bip32_exportPublicKeyPrefix,
             $bip32_hardenedIndexBeginsFrom,
-            $bip32_hmacSeed
+            $bip32_hmacSeed,
+            base58Charset: "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz",
+            base58CaseSensitive: true,
         );
     }
 
