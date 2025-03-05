@@ -15,6 +15,8 @@ declare(strict_types=1);
 namespace Kaadon\Ethereum\RPC;
 
 use Kaadon\Ethereum\Ethereum;
+use Kaadon\Ethereum\Exception\RPC_CurlException;
+use Kaadon\Ethereum\Exception\RPC_RequestException;
 
 /**
  * Class Infura
@@ -46,7 +48,6 @@ class Infura extends Abstract_RPC_Client
             $this->httpAuthPass = $this->apiSecret;
         }
     }
-
     /**
      * @return string
      */
@@ -54,4 +55,25 @@ class Infura extends Abstract_RPC_Client
     {
         return $this->serverURL;
     }
+    public function getSuggestedGasFees($chainId) {
+        $url = "https://gas.api.infura.io/networks/$chainId/suggestedGasFees";
+        $auth = base64_encode("$this->apiKey:$this->apiSecret");
+
+        $options = [
+            "http" => [
+                "header" => "Authorization: Basic $auth",
+                "method" => "GET"
+            ]
+        ];
+
+        $context = stream_context_create($options);
+        $response = file_get_contents($url, false, $context);
+
+        if ($response === false) {
+            throw new RPC_RequestException("Error fetching suggested gas fees");
+        }
+
+        return json_decode($response, true);
+    }
+
 }
