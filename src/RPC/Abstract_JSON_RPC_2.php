@@ -64,7 +64,7 @@ abstract class Abstract_JSON_RPC_2
      */
     protected function generateUniqueId(): string
     {
-        return sprintf('%s_%s_%d', $this->requestNoncePrefix ?? time(), md5((string)microtime(true)), mt_rand(111111, 999999));
+        return sprintf('%s_%s_%d', $this->requestNoncePrefix ?? time(), md5((string)microtime(true)), mt_rand(100000, 999999));
     }
 
     /**
