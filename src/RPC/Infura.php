@@ -14,8 +14,6 @@ declare(strict_types=1);
 
 namespace Kaadon\Ethereum\RPC;
 
-use Kaadon\Ethereum\Ethereum;
-use Kaadon\Ethereum\Exception\RPC_CurlException;
 use Kaadon\Ethereum\Exception\RPC_RequestException;
 
 /**
